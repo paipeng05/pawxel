@@ -45,6 +45,7 @@ bool Preferences::flush() {
         m_saveFileFormat = this->getValue("save_file_format").toInt();
         m_afterScreenshot = this->getValue("after_screenshot").toInt();
         m_autostart = this->getValue("autostart").toBool();
+        m_autosave = this->getValue("autosave").toBool();
         m_invertMouseZoom = this->getValue("invert_zoom").toBool();
         m_editorGLAcceleration = this->getValue("editor_gl_accel").toBool();
         m_editorTextAA = this->getValue("editor_text_aa").toBool();
@@ -175,6 +176,15 @@ void Preferences::setAutostart(bool _b) {
         emit autostartChanged(_b);
     }
 }
+
+    void Preferences::setAutosave(bool _b) {
+        if (this->write("autosave", QVariant(_b).toString())) {
+            m_autosave = _b;
+            LOG(DEBUG) << "Autosave changed: " << m_autosave;
+            this->flush();
+            emit autosaveChanged(_b);
+        }
+    }
 
 void Preferences::setInvertMouseZoom(bool _b) {
     if (this->write("invert_zoom", QVariant(_b).toString())) {

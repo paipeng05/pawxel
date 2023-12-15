@@ -56,6 +56,7 @@ private:
     QComboBox *m_saveFileFormatBox;
     QComboBox *m_afterScreenshotBox;
     QCheckBox *m_autostartBox;
+    QCheckBox *m_autosaveBox;
     QCheckBox *m_invertMouseZoomBox;
     QCheckBox *m_editorGLBox;
     QCheckBox *m_editorAABox;

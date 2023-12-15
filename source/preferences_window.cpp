@@ -196,8 +196,15 @@ QWidget* PreferencesWindow::createGeneralPage() {
         });
     }
     m_generalPageLayout->addRow(tr("Enable autostart:"), m_autostartBox);
-
-    m_generalPageLayout->addRow(tr("Auto-save"), new QWidget);
+    m_autosaveBox = new QCheckBox(m_generalPage);
+    {
+        m_autosaveBox->setFixedWidth(20);
+        m_autosaveBox->setChecked(PwxApp->preferences()->autosaveEnabled());
+        connect(m_autosaveBox, &QCheckBox::toggled, this, [=](bool _b) {
+            PwxApp->preferences()->setAutosave(_b);
+        });
+    }
+    m_generalPageLayout->addRow(tr("Enable autosave:"), m_autosaveBox);
     m_screenshotsFolderEdit = new QLineEdit(m_generalPage);
     {
         m_screenshotsFolderEdit->setPlaceholderText(tr("Leave empty if not wanted"));

@@ -44,6 +44,9 @@ public:
     void setAutostart(bool _b);
     bool autostartEnabled() { return m_autostart; }
 
+    void setAutosave(bool _b);
+    bool autosaveEnabled() { return m_autosave; }
+
     void setInvertMouseZoom(bool _b);
     bool mouseZoomInverted() { return m_invertMouseZoom; }
 
@@ -86,6 +89,8 @@ protected:
 
     // only available when startup mode 0
     bool m_autostart;
+    // 0 = auto-saves to specified folder; 1 = opens folder screen
+    bool m_autosave;
 
     bool m_invertMouseZoom;
     bool m_editorGLAcceleration;
@@ -116,6 +121,7 @@ signals:
     void saveFileFormatChanged(int _i);
     void afterScreenshotChanged(int _i);
     void autostartChanged(bool _b);
+    void autosaveChanged(bool _b);
     void mouseZoomInvertChanged(bool _b);
     void editorAAChanged(bool _b);
     void globalHotkeyChanged(int _id, const QString &_newHotkey);
